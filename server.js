@@ -11,6 +11,6 @@ const Stream = require('node-rtsp-stream');
 
 const stream = new Stream({
     name: 'name',
-    streamUrl: 'rtsp://localhost:8554/vlc',
+    streamUrl: 'rtsp://192.168.1.104:8554/vlc',
     wsPort: 10086
 });

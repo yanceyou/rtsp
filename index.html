@@ -20,11 +20,17 @@
 <body>
     <canvas id="videoCanvas" width="640" height="480"></canvas>
 
-    <!-- <script src="./lib/jsmpeg/jsmpg.js"></script> -->
-    <script src="./lib/jsmpeg-master/jsmpeg.min.js"></script>
+	<script src="./lib/jsmpeg/jsmpg.js"></script>
+	<script>
+		var client = new WebSocket('ws://localhost:10086/');
+		var canvas = document.getElementById('videoCanvas');
+		var player = new jsmpeg(client, {canvas:canvas});
+	</script>
+
+    <!-- <script src="./lib/jsmpeg-master/jsmpeg.min.js"></script>
     <script type="text/javascript">
         var canvas = document.getElementById('videoCanvas');
 		var player = new JSMpeg.Player('ws://localhost:10086/', {canvas: canvas});
-    </script>
+    </script> -->
 </body>
 </html>
