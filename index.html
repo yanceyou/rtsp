@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<style type="text/css">
+		body {
+			background: #333;
+			text-align: center;
+			margin-top: 10%;
+		}
+		#videoCanvas {
+			width: 640px;
+			height: 480px;
+		}
+	</style>
+</head>
+<body>
+    <canvas id="videoCanvas" width="640" height="480"></canvas>
+
+    <!-- <script src="./lib/jsmpeg/jsmpg.js"></script> -->
+    <script src="./lib/jsmpeg-master/jsmpeg.min.js"></script>
+    <script type="text/javascript">
+        var canvas = document.getElementById('videoCanvas');
+		var player = new JSMpeg.Player('ws://localhost:10086/', {canvas: canvas});
+    </script>
+</body>
+</html>
