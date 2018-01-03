@@ -16,7 +16,7 @@ class VideoStream extends EventEmitter {
     this.stream2Socket()
   }
 
-  stream2Socket() {    
+  stream2Socket() {
     const server = new WebSocket.Server({ port: this.port })
     server.on('connection', (socket) => {
 
@@ -25,7 +25,7 @@ class VideoStream extends EventEmitter {
       let streamHeader = new Buffer(8)
       streamHeader.write(STREAM_MAGIC_BYTES)
       streamHeader.writeUInt16BE(this.width, 4)
-      streamHeader.writeUInt16BE(this.height, 6)      
+      streamHeader.writeUInt16BE(this.height, 6)
       socket.send(streamHeader)
 
       this.on('camdata', (data) => {
@@ -50,8 +50,8 @@ class VideoStream extends EventEmitter {
     })
   }
 
-  start() {    
-    this.mpeg1Muxer = new ProtocolConversion({ url: this.url })    
+  start() {
+    this.mpeg1Muxer = new ProtocolConversion({ url: this.url })
     this.mpeg1Muxer.on('mpeg1data', (data) => { return this.emit('camdata', data) })
 
     let gettingInputData = false

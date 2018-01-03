@@ -18,14 +18,44 @@
 	</style>
 </head>
 <body>
-    <canvas id="videoCanvas" width="640" height="480"></canvas>
+	<video id="video" autoplay></video>
+	<script>
+		var mimeCodec = 'video/mp4; codecs="avc1.42c015, mp4a.40.2"';
 
+		var client = new WebSocket('ws://localhost:10086/')
+		var video = document.getElementById('video')
+		var mediaSource = new MediaSource()
+
+		console.log(`mediaSource.readyState: ${mediaSource.readyState}`)
+		console.log(`MediaSource.isTypeSupported(mimeCodec): ${MediaSource.isTypeSupported(mimeCodec)}`)
+
+		video.src = window.URL.createObjectURL(mediaSource)
+		mediaSource.addEventListener('sourceopen', function() {
+			console.log(`mediaSource.readyState: ${mediaSource.readyState}`);
+  			var sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+
+			// sourceBuffer.addEventListener('update', function () {
+			// 	console.log(`mediaSource.readyState: ${mediaSource.readyState}`)
+			// 	sourceBuffer.appendBuffer(messageData);
+			// });
+
+			client.onmessage = function (event) {
+				console.log(event);
+				sourceBuffer.appendBuffer(event.data);
+			}
+
+			video.play();
+			console.log(`mediaSource.readyState: ${mediaSource.readyState}`)
+		})
+	</script>
+
+    <!-- <canvas id="videoCanvas" width="640" height="480"></canvas>
 	<script src="./lib/jsmpeg/jsmpg.js"></script>
 	<script>
 		var client = new WebSocket('ws://localhost:10086/');
 		var canvas = document.getElementById('videoCanvas');
 		var player = new jsmpeg(client, {canvas:canvas});
-	</script>
+	</script> -->
 
     <!-- <script src="./lib/jsmpeg-master/jsmpeg.min.js"></script>
     <script type="text/javascript">
