@@ -7,7 +7,14 @@ class ProtocolConversion extends EventEmitter {
 
         this.url = options.url
 
-        const ffmpegArgus = `-i ${this.url} -c copy -f h264 pipe:1`.split(' ')
+        const ffmpegArgus = [
+            '-i', this.url,
+            '-f', 'mpegts',
+            '-codec:v', 'mpeg1video',
+            // '-codec:a', 'mp2',
+            // '-b', '0',
+            '-'
+        ]
         this.stream = child_process.spawn("ffmpeg", ffmpegArgus, {
             detached: false
         })

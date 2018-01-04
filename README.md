@@ -17,6 +17,7 @@ npm install
 
 ## 参考资料
 
+- [HTML5视频监控技术预研](https://blog.gmem.cc/research-on-html5-video-surveillance)
 - [ffmpeg in html5](https://gist.github.com/yellowled/1439610)
 
 ## 解决思路
@@ -36,9 +37,11 @@ npm install
 3. 使用 javascript/webassembly 直接实现对 RTSP 协议的支持
 
 - \(^o^)/~
-- \(^o^)/~
+- \(^o^)/~ 都没有 NPAPI 了，咋做呢
 
 ### 方案2：间接连接 IP摄像头 ---> 服务器 ---> 浏览器
 
-1. 通过 FFmpeg 将 RTSP 协议转换成 HTTP 协议，浏览器直接读取 HTTP 协议
-2. 通过 FFmpeg 将 RTSP 协议进行转换，然后通过进程间通信的方式，将转换的结果通过websocket传到浏览器
+1. RTSP -> RTMP -> flash
+2. RTSP -> (HTTP -> WebSocket) -> Web Canvas
+3. RTSP -> (IPC -> WebSocket) -> Web Canvas
+4. RTSP -> (Fragmentd MP4) -> MSE

@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "dependencies": {
-    "node-rtsp-stream": "0.0.3",
-    "node-rtsp-stream-es6": "^1.0.6"
+  "devDependencies": {
+    "ws": "^3.3.3"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node server.js"
   },
