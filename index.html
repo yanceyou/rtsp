@@ -12,13 +12,24 @@
 			margin-top: 10%;
 		}
 	</style>
+    <script type="text/javascript" src="./lib/wfs.js/dist/wfs.js" ></script>  
 </head>
 <body>
-    <canvas id="videoCanvas"></canvas>
+    <!-- <canvas id="videoCanvas"></canvas>
     <script src="./lib/jsmpeg/jsmpeg.min.js"></script>
     <script type="text/javascript">
         var canvas = document.getElementById('videoCanvas');
 		var player = new JSMpeg.Player('ws://localhost:10086/', {canvas: canvas});
+    </script> -->
+    <video id="video1"></video>
+    <script>
+        window.onload = function() {
+            if (Wfs.isSupported()) {
+                var video1 = document.getElementById("video1");
+                var wfs = new Wfs();
+                wfs.attachMedia(video1, 'ch1', 'H264Raw', 'ws://localhost:10086');
+            }
+        }
     </script>
 </body>
 </html>

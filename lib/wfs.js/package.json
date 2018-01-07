@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "prebuild": "npm run clean & npm run test",
-    "build": "npm run babel && browserify -t browserify-versionify -t [babelify] -s Wfs src/index.js --debug | exorcist dist/wfs.js.map -b . > dist/wfs.js",     
+    "build": "npm run babel && browserify -t browserify-versionify -t [babelify] -s Wfs src/index.js --debug | exorcist dist/wfs.js.map -b . > dist/wfs.js",
     "babel": "babel src --out-dir lib"
   },
   "devDependencies": {

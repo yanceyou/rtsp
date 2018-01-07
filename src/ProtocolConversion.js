@@ -8,10 +8,11 @@ class ProtocolConversion extends EventEmitter {
         this.url = options.url
 
         const ffmpegArgus = [
+            // '-re',
             '-i', this.url,
-            '-f', 'mpegts',
-            '-codec:v', 'mpeg1video',
-            // '-codec:a', 'mp2',
+            '-f', 'h264',
+            '-codec', 'copy',
+            '-bsf:v', 'h264_mp4toannexb',
             // '-b', '0',
             '-'
         ]
