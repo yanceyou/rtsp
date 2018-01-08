@@ -12,7 +12,7 @@ class ProtocolConversion extends EventEmitter {
             '-i', this.url,
             '-f', 'h264',
             '-codec', 'copy',
-            '-bsf:v', 'h264_mp4toannexb',
+            // '-bsf:v', 'h264_mp4toannexb',
             // '-b', '0',
             '-'
         ]

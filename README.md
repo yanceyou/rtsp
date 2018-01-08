@@ -37,11 +37,11 @@ npm install
 3. 使用 javascript/webassembly 直接实现对 RTSP 协议的支持
 
 - \(^o^)/~
-- \(^o^)/~ 都没有 NPAPI 了，咋做呢
 
 ### 方案2：间接连接 IP摄像头 ---> 服务器 ---> 浏览器
 
-1. RTSP -> RTMP -> flash
-2. RTSP -> (HTTP -> WebSocket) -> Web Canvas
-3. RTSP -> (IPC -> WebSocket) -> Web Canvas
-4. RTSP -> (Fragmentd MP4) -> MSE
+1. RTSP -> (ffmpeg -> RTMP) -> flash
+2. RTSP -> (ffmpeg -> HTTP -> WebSocket) -> Canvas
+3. RTSP -> (ffmpeg -> WebSocket[MPEG1]) -> Canvas
+4. RTSP -> (ffmpeg -> WebSocket[fMP4]) -> (MSE -> Video)
+5. RTSP -> (ffmpeg -> WebSocket[raw h264]) -> (fMP4 -> MSE -> Video)
