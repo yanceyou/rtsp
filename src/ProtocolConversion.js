@@ -8,12 +8,9 @@ class ProtocolConversion extends EventEmitter {
         this.url = options.url
 
         const ffmpegArgus = [
-            // '-re',
             '-i', this.url,
             '-f', 'h264',
             '-codec', 'copy',
-            // '-bsf:v', 'h264_mp4toannexb',
-            // '-b', '0',
             '-'
         ]
         this.stream = child_process.spawn("ffmpeg", ffmpegArgus, {
@@ -22,7 +19,7 @@ class ProtocolConversion extends EventEmitter {
 
         this.inputStreamStarted = true
         this.stream.stdout.on('data', (data) => {
-            return this.emit('mpeg1data', data)
+            return this.emit('streamData', data)
         })
         this.stream.stderr.on('data', (data) => {
             return this.emit('ffmpegError', data)

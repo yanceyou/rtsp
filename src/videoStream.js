@@ -76,7 +76,7 @@ class VideoStream extends EventEmitter {
 
     start() {
         this.mpeg1Muxer = new ProtocolConversion({ url: this.url })
-        this.mpeg1Muxer.on('mpeg1data', (data) => { return this.emit('camdata', data) })
+        this.mpeg1Muxer.on('streamData', (data) => { return this.emit('camdata', data) })
 
         let gettingInputData = false
         let gettingOutputData = false
